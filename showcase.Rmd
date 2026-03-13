@@ -26,8 +26,9 @@ Because treatment is randomly assigned, differences between the two groups can b
 library(ggplot2)
 library(dplyr)
 library(scales)
+```
 
-{r}
+```{r}
 # Set sample size
 n <- 1500
 
