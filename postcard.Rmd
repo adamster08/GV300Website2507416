@@ -1,0 +1,9 @@
+---
+title: "About Me"
+output: postcards::jolla
+---
+
+Hi, I’m Adam, a Malaysian student studying Politics and International Relations at the University of Essex. I’m interested in politics, data analysis, and global affairs, but I also enjoy learning about history, cultures, and how the world works more broadly. Outside university, I keep active through gym training, bouldering, and swimming, and I enjoy reading in my free time. In the future, I hope to work in consulting or policy where I can apply analytical thinking to real-world challenges.
+
+ View my GV300 analysis here:  
+[Go to Showcase](showcase.html)

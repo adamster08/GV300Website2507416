@@ -1,0 +1,14 @@
+name: "GV300-Website-Fresh"
+title: "GV300 Portfolio"
+output_dir: "docs"
+
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Showcase"
+      href: showcase.html
+    - text: "Postcard"
+      href: postcard.html
+
+output: distill::distill_website

@@ -1,0 +1,111 @@
+---
+title: "GV300 Showcase"
+description: "A short showcase of one data visualisation and what it tells us."
+output: distill::distill_article
+---
+
+## What this is
+This page showcases an example of my work in quantitative political analysis. It highlights how experimental data, simple statistical coding, and data visualisation can be used to investigate a question about political communication and supporter engagement.
+
+The example below is based on an A/B test in which different homepage designs are used to examine whether issue-focused political messaging increases supporter signups.
+
+
+## The question
+Does an issue-focused homepage increase the probability that visitors sign up to support a political party?
+
+This question comes from an A/B test in which website visitors are randomly assigned to one of two homepage versions: a standard control homepage or an issue-focused homepage. By comparing signup rates across the two groups, it becomes possible to estimate whether issue-focused messaging has a measurable effect on supporter engagement.
+
+
+## The data
+The analysis uses simulated A/B test data with 1,500 website visitors. Each visitor is randomly assigned to either the control homepage or the issue-focused homepage. The key outcome variable is `support_signup`, which records whether the visitor signs up as a supporter.
+
+Because treatment is randomly assigned, differences between the two groups can be interpreted as the causal effect of the homepage design rather than just a descriptive difference. 
+
+## Visualisation
+```{r setup, include=FALSE}
+library(ggplot2)
+library(dplyr)
+library(scales)
+
+{r}
+# Set sample size
+n <- 1500
+
+# Random treatment assignment
+treatment <- rbinom(n = n, size = 1, prob = 0.5)
+
+# Potential outcomes
+p_control <- 0.12
+p_treated <- 0.17
+
+Y0 <- rbinom(n = n, size = 1, prob = p_control)
+Y1 <- rbinom(n = n, size = 1, prob = p_treated)
+
+# Realised outcome
+support_signup <- ifelse(treatment == 1, Y1, Y0)
+
+# Data frame
+party_ab <- data.frame(
+  visitor_id = 1:n,
+  treatment = treatment,
+  support_signup = support_signup
+)
+
+# Group means
+mean_control <- mean(party_ab$support_signup[party_ab$treatment == 0])
+mean_treated <- mean(party_ab$support_signup[party_ab$treatment == 1])
+
+means_df <- data.frame(
+  treatment = c("Control homepage", "Issue-focused homepage"),
+  mean_signup = c(mean_control, mean_treated)
+)
+
+# Bar plot
+ggplot(means_df, aes(x = treatment, y = mean_signup, fill = treatment)) +
+  geom_col(width = 0.6) +
+  geom_text(
+    aes(label = paste0(round(mean_signup * 100, 1), "%")),
+    vjust = -0.5
+  ) +
+  scale_y_continuous(
+    limits = c(0, 0.25),
+    expand = expansion(mult = c(0, 0.05)),
+    labels = percent_format(accuracy = 1)
+  ) +
+  scale_fill_manual(values = c("Control homepage" = "gray70",
+                               "Issue-focused homepage" = "steelblue")) +
+  labs(
+    x = NULL,
+    y = "Signup rate",
+    title = "Supporter signup rate by homepage version"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+## What the code does
+The code simulates an A/B test where website visitors are randomly assigned to one of two homepage versions. It then generates the observed signup outcome for each visitor and calculates the average signup rate in both the control and treatment groups.
+
+The final step creates a bar chart comparing the two group means, which makes it easy to see whether the issue-focused homepage appears to increase supporter signups.
+
+## Interpretation
+The figure compares the average signup rate between visitors shown the standard homepage and those shown the issue-focused homepage. The issue-focused homepage produces a higher signup rate than the control version, which suggests that highlighting a specific political issue can improve supporter engagement.
+
+Because visitors are randomly assigned to treatment, the difference between the two groups can be interpreted as the causal effect of the homepage design. In practical terms, this suggests that issue-focused messaging may be more effective at converting website visitors into supporters.
+
+## Limitation
+One limitation is that the dataset is simulated rather than based on real campaign traffic. This means the results may not fully capture the complexity of real political behaviour, where factors such as prior partisanship, political interest, or repeated exposure to campaign messaging may also influence signup behaviour. The findings should therefore be interpreted as an illustration of experimental analysis rather than definitive evidence about campaign strategy.
+
+## Skills Demonstrated
+This example highlights several quantitative skills:
+
+- Experimental design and causal inference
+
+- Simulation of experimental data
+
+- Data handling and descriptive comparison
+
+- Data visualisation using ggplot2
+
+- Interpretation of treatment effects in political communication
