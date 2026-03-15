@@ -4,6 +4,12 @@ description: "A short showcase of one data visualisation and what it tells us."
 output: distill::distill_article
 ---
 
+<div style="padding: 12px 0; border-bottom: 1px solid #ddd; margin-bottom: 25px; font-size: 16px;">
+  <a href="index.html" style="margin-right: 20px;">Home</a>
+  <a href="showcase.html" style="margin-right: 20px;">Showcase</a>
+  <a href="postcard.html">About Me</a>
+</div>
+
 ## What this is
 This page showcases an example of my work in quantitative political analysis. It highlights how experimental data, simple statistical coding, and data visualisation can be used to investigate a question about political communication and supporter engagement.
 

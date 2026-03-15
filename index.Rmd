@@ -4,6 +4,12 @@ description: "My Portfolio"
 output: distill::distill_article
 ---
 
+<div style="padding: 12px 0; border-bottom: 1px solid #ddd; margin-bottom: 25px; font-size: 16px;">
+  <a href="index.html" style="margin-right: 20px;">Home</a>
+  <a href="showcase.html" style="margin-right: 20px;">Showcase</a>
+  <a href="postcard.html">About Me</a>
+</div>
+
 Hi, I’m Adam, a Politics and International Relations student at the University of Essex.
 
 This site serves as a small portfolio showcasing examples of my work in quantitative political analysis. It highlights how data, statistical coding, and visualisation can be used to explore questions in political behaviour and communication.
