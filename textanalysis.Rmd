@@ -115,11 +115,7 @@ This example highlights several text analysis skills:
 
 - Working with text as data
 
-- Tokenising and cleaning text
-
 - Removing stop words
-
-- Comparing full and processed text
 
 - Visualising textual patterns using ggplot2
 
