@@ -1,5 +1,5 @@
 ---
-title: "GV300 Showcase"
+title: "Showcase"
 description: "A short showcase of one data visualisation and what it tells us."
 output: distill::distill_article
 ---
