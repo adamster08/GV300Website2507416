@@ -7,7 +7,7 @@ output: distill::distill_article
 <div style="padding: 14px 0; border-bottom: 1px solid #e5e5e5; margin-bottom: 32px; font-size: 16px;">
   <a href="index.html" style="margin-right: 22px; text-decoration: none;">Home</a>
   <a href="showcase.html" style="margin-right: 22px; text-decoration: none;">Showcase</a>
-  <a href="text_analysis.html" style="margin-right: 22px; text-decoration: none;">Text Analysis</a>
+  <a href="textanalysis.html" style="margin-right: 22px; text-decoration: none;">Text Analysis</a>
   <a href="postcard.html" style="text-decoration: none;">About Me</a>
 </div>
 

@@ -7,7 +7,7 @@ output: distill::distill_article
 <div style="padding: 14px 0; border-bottom: 1px solid #e5e5e5; margin-bottom: 32px; font-size: 16px;">
   <a href="index.html" style="margin-right: 22px; text-decoration: none;">Home</a>
   <a href="showcase.html" style="margin-right: 22px; text-decoration: none;">Showcase</a>
-  <a href="text_analysis.html" style="margin-right: 22px; text-decoration: none;">Text Analysis</a>
+  <a href="textanalysis.html" style="margin-right: 22px; text-decoration: none;">Text Analysis</a>
   <a href="postcard.html" style="text-decoration: none;">About Me</a>
 </div>
 
@@ -91,7 +91,7 @@ This provides a simple way of identifying the most prominent themes in the speec
 
 ## Interpretation
 
-The chart highlights the most frequently used words in the speech after removing common filler words. Terms such as “country”, “service”, “trust”, and “change” appear most prominently.
+The chart highlights the most frequently used words in the speech after removing common filler words. Terms such as “country”, “service”, and “change” appear most prominently.
 
 This suggests that the speech is heavily centred around themes of national renewal and rebuilding trust in politics. The repeated use of words like “service” and “country” reinforces the idea that government is being framed as something that should work for the public rather than for political interests. In this sense, the language is not just descriptive but also strategic, aiming to reposition politics as something grounded in responsibility and duty.
 
