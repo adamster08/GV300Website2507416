@@ -1,0 +1,126 @@
+---
+title: "Text Analysis"
+description: "A simple text analysis of political language using word frequencies."
+output: distill::distill_article
+---
+
+<div style="padding: 14px 0; border-bottom: 1px solid #e5e5e5; margin-bottom: 32px; font-size: 16px;">
+  <a href="index.html" style="margin-right: 22px; text-decoration: none;">Home</a>
+  <a href="showcase.html" style="margin-right: 22px; text-decoration: none;">Showcase</a>
+  <a href="text_analysis.html" style="margin-right: 22px; text-decoration: none;">Text Analysis</a>
+  <a href="postcard.html" style="text-decoration: none;">About Me</a>
+</div>
+
+## Overview
+
+This section demonstrates a simple text analysis of political language using a speech by Keir Starmer following his appointment as Prime Minister in 2024. The aim is to show how political text can be treated as data, allowing patterns in language and messaging to be identified through word frequency.
+
+By analysing the speech, this section highlights how key themes such as trust, public service, and national renewal are reinforced through repeated language, providing insight into how political messages are constructed and communicated.
+
+---
+
+## Full Speech
+
+The text below is taken from Keir Starmer’s first address as Prime Minister in 2024.
+
+```{r setup, include=FALSE}
+library(dplyr)
+library(ggplot2)
+library(tidytext)
+library(tibble)
+library(htmltools)
+library(stringr)
+library(scales)
+
+```{r, echo=FALSE}
+speech_text <- "Good afternoon. I have just returned from Buckingham Palace. Where I accepted an invitation from His Majesty the King. To form the next government of this great nation. I want to thank the outgoing Prime Minister, Rishi Sunak. His achievement as the first British Asian Prime Minister of our country. The extra effort that will have required. Should not be underestimated by anyone. We pay tribute to that today. And we also recognise the dedication and hard work he brought to his leadership. But now our country has voted, decisively. For change. For national renewal. And a return of politics to public service. When the gap between the sacrifices made by people. And the service they receive from politicians. Grows this big. It leads to a weariness in the heart of a nation. A draining away of the hope, the spirit, the belief in a better future. That we need to move forward, together. Now, this wound. This lack of trust. Can only be healed by actions not words. I know that. But we can make a start today. With the simple acknowledgment. That public service is a privilege. And that your government should treat every single person in this country. With respect. If you voted for Labour yesterday. We will carry the responsibility of your trust, as we rebuild our country. But whether you voted Labour or not. In fact - especially if you did not. I say to you, directly. My government will serve you. Politics can be a force for good - we will show that. And that is how we will govern. Country first, party second. Yet, if I’m honest. Service is merely a pre-condition for hope. And it is surely clear to everyone. That our country needs a bigger reset. A rediscovery of who we are. Because no matter how fierce the storms of history. One of the great strengths of this nation. Has always been our ability to navigate a way through to calmer waters. And yet this depends upon politicians. Particularly those who stand for stability and moderation - as I do. Recognising when we must change course. For too long now. We have turned a blind eye as millions slid into greater insecurity. Nurses, builders, drivers, carers. People doing the right thing. Working harder than ever. Recognised - at moments like this, before. Yet as soon as the cameras stop rolling. Their lives are ignored. I want to say very clearly to those people - not this time. Changing a country is not like flicking a switch. And the world is now a more volatile place. This will take a while. But have no doubt that the work of change begins - immediately. Have no doubt - that we will rebuild Britain. With wealth created in every community. Our NHS back on its feet, facing the future. Secure borders. Safer streets. Everyone treated with dignity and respect at work. The opportunity of clean British power. Cutting your energy bills for good. And, brick by brick. We will rebuild the infrastructure of opportunity. The world class schools and colleges. The affordable homes that I know. Are the ingredients of hope for working people. The security that working class families like mine. Could build their lives around. Because if I asked you, now. Whether you believe that Britain will be better for your children. I know - too many of you would say: no. And so my government will fight, every day. Until you believe again. From now on. You have a government unburdened by doctrine. Guided only by a determination to serve your interests. To defy, quietly. Those who have written our country off. You have given us a clear mandate. And we will use it to deliver change. To restore service and respect to politics. End the era of noisy performance. Tread more lightly on your lives. And unite our country. Four nations. Standing together again. Facing down, as we have so often in our past. The challenges of an insecure world. Committed - to a calm and patient rebuilding. So with respect and humility. I invite you all. To join this government of service. In the mission of national renewal. Our work is urgent. And we begin it today."
+```
+
+```{r, results='asis', echo=FALSE}
+sentences <- unlist(strsplit(speech_text, "\\.\\s+"))
+sentences <- trimws(sentences)
+sentences <- sentences[sentences != ""]
+speech_html <- paste0("<p>", sentences, ".</p>", collapse = "")
+
+htmltools::HTML(
+  paste0(
+    '<div style="max-height: 300px; overflow-y: auto; padding: 16px; border: 1px solid #ddd; background-color: #f8f9fa; border-radius: 6px; line-height: 1.6; margin-bottom: 20px;">',
+    speech_html,
+    '</div>'
+  )
+)
+```
+
+## Method
+
+The speech is treated as text data and converted into a tidy format by splitting it into individual words. Common stop words such as “the”, “and”, and “to” are removed using a standard stop word list. The remaining words are then counted to identify the most frequently used terms.
+
+This allows for a simple form of text analysis, where patterns in word usage can be used to highlight the main themes and priorities within the speech.
+
+## Word Frequency: Full Speech
+
+The results below show the most frequently used words in the speech after preprocessing.
+
+```{r}
+full_text <- tibble(text = speech_text)
+
+data(stop_words)
+
+full_counts <- full_text %>%
+  unnest_tokens(word, text) %>%
+  anti_join(stop_words, by = "word") %>%
+  count(word, sort = TRUE)
+
+full_counts %>%
+  slice_max(order_by = n, n = 10, with_ties = FALSE) %>%
+  ggplot(aes(x = reorder(word, n), y = n)) +
+  geom_col(width = 0.7) +
+  coord_flip() +
+  labs(
+    x = NULL,
+    y = "Frequency",
+    title = "Most common words in Keir Starmer’s speech"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+The text is converted into a tidy format by splitting it into individual words. Common stop words such as “the”, “and”, and “to” are removed using a standard stop word list. The remaining words are then counted and visualised.
+
+This provides a simple way of identifying the most prominent themes in the speech.
+
+## Interpretation
+
+The chart highlights the most frequently used words in the speech after removing common filler words. Terms such as “country”, “service”, “trust”, and “change” appear most prominently.
+
+This suggests that the speech is heavily centred around themes of national renewal and rebuilding trust in politics. The repeated use of words like “service” and “country” reinforces the idea that government is being framed as something that should work for the public rather than for political interests. In this sense, the language is not just descriptive but also strategic, aiming to reposition politics as something grounded in responsibility and duty.
+
+The prominence of “change” is also significant. It reflects the broader context of the speech, where the election result is being framed as a clear break from the past. Rather than focusing on specific policies, the speech emphasises direction and intent, using repeated language to establish a sense of transition and reset.
+
+At the same time, the frequent use of collective terms such as “country” helps construct a shared national identity. This creates a more inclusive tone, suggesting that the government is speaking to the whole population rather than a specific group of voters. This is reinforced by phrases that emphasise unity, stability, and rebuilding.
+
+More broadly, the results highlight how repetition functions as a key feature of political communication. Words are not repeated by accident, but to reinforce central messages and make them more memorable. While a simple word frequency analysis cannot capture tone or context fully, it still provides a useful way of identifying the core themes that structure the speech and the priorities being communicated to the public.
+
+This demonstrates how even basic text analysis can move beyond description to provide insight into how political messages are structured and communicated.
+
+## Limitation
+
+Word-frequency analysis is useful for identifying repeated themes, but it does not capture tone, context, or the deeper meaning of language. In a political speech, repetition is often intentional and rhetorically important, so simplifying the text may remove some of that effect.
+
+This means the analysis should be treated as a basic exploratory tool rather than a complete interpretation of the speech.
+
+## Skills Demonstrated
+
+This example highlights several text analysis skills:
+
+- Working with text as data
+
+- Tokenising and cleaning text
+
+- Removing stop words
+
+- Comparing full and processed text
+
+- Visualising textual patterns using ggplot2
+
+- Interpreting political language

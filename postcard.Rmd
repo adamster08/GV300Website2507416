@@ -3,13 +3,19 @@ title: "About Me"
 output: postcards::jolla
 ---
 
-<div style="padding: 12px 0; border-bottom: 1px solid #ddd; margin-bottom: 25px; font-size: 16px;">
-  <a href="index.html" style="margin-right: 20px;">Home</a>
-  <a href="showcase.html" style="margin-right: 20px;">Showcase</a>
-  <a href="postcard.html">About Me</a>
+<div style="padding: 14px 0; border-bottom: 1px solid #e5e5e5; margin-bottom: 32px; font-size: 16px;">
+  <a href="index.html" style="margin-right: 22px; text-decoration: none;">Home</a>
+  <a href="showcase.html" style="margin-right: 22px; text-decoration: none;">Showcase</a>
+  <a href="text_analysis.html" style="margin-right: 22px; text-decoration: none;">Text Analysis</a>
+  <a href="postcard.html" style="text-decoration: none;">About Me</a>
 </div>
 
-Hi, I’m Adam, a Malaysian student studying Politics and International Relations at the University of Essex. I’m interested in politics, data analysis, and global affairs, but I also enjoy learning about history, cultures, and how the world works more broadly. Outside university, I keep active through gym training, bouldering, and swimming, and I enjoy reading in my free time. In the future, I hope to work in consulting or policy where I can apply analytical thinking to real-world challenges.
+Hi, I’m Adam, a Malaysian student studying **Politics and International Relations at the University of Essex**.
 
- View my GV300 analysis here:  
-[Go to Showcase](showcase.html)
+My academic interests include political behaviour, quantitative analysis, and digital political communication. I’m particularly interested in how data and statistical methods can be used to better understand political behaviour and decision-making.
+
+More broadly, I enjoy learning about history, cultures, and the systems that shape how societies and institutions function.
+
+Outside of university, I stay active through **gym training, bouldering, and swimming**, and I enjoy reading in my free time.
+
+In the future, I hope to work in **consulting or policy**, where I can apply analytical thinking and data-driven approaches to real-world political and organisational challenges.
